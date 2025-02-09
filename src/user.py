@@ -1,4 +1,4 @@
-from utils import get_coordinates, is_valid_location
+from src.utils import get_coordinates, is_valid_location
 
 class User:
     def __init__(self):

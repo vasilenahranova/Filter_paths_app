@@ -1,20 +1,21 @@
 import osmnx as ox
 import re
 import os
+import networkx as nx
 
-def get_coordinates(place_name):
-    """Convert a place name to latitude and longitude."""
+def get_coordinates(place_name) -> tuple | None:
+    """Convert a place name to (latitude, longitude)."""
     location = ox.geocode(place_name)
     if location:
-        return location[0], location[1]  # Return (latitude, longitude)
+        return location[0], location[1]
     else:
         return None
 
-def is_valid_location(input_str):
+def is_valid_location(input_str) -> bool:
     """Checks if the input contains only letters, numbers, commas, and spaces."""
     return bool(re.fullmatch(r'[a-zA-Z0-9,.\s\u0400-\u04FF]+', input_str)) and not input_str.isdigit()
 
-def download_and_save_graph():
+def download_and_save_graph() -> None:
     location = "Sofia, Bulgaria"
     G = ox.graph_from_place(location, network_type='drive')
 
@@ -22,7 +23,7 @@ def download_and_save_graph():
     ox.save_graphml(G, graph_file)
     print(f"Graph saved to {graph_file}")
 
-def load_graph():
+def load_graph() -> nx.MultiDiGraphv:
     graph_file = 'sofia_street_network.graphml'
     
     if os.path.exists(graph_file):

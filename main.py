@@ -1,5 +1,5 @@
-from user import User
-from graph import Graph
+from src.user import User
+from src.graph import Graph
 
 if __name__ == "__main__":
     user = User()
@@ -10,7 +10,7 @@ if __name__ == "__main__":
 
     path, length = g.find_shortest_path(user.start_point_coordinates, user.target_point_coordinates)
     g.save_path_for_navigation(path,'user_path.gpx')
-    # g.visualize() - still not added
+    g.visualize(path)
 
 
 
