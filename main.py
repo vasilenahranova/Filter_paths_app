@@ -1,3 +1,5 @@
+"""Entry point for the application, managing user interaction and pathfinding tasks."""
+
 from src.user import User
 from src.graph import Graph
 
@@ -8,10 +10,7 @@ if __name__ == "__main__":
     g = Graph()
     g.manipulate_graph()
 
-    path, length = g.find_shortest_path(user.start_point_coordinates, user.target_point_coordinates)
-    g.save_path_for_navigation(path,'user_path.gpx')
-    g.visualize(path)
-
-
-
-    
+    path, length = g.find_shortest_path(
+        user.start_point_coordinates, user.target_point_coordinates
+    )
+    g.save_path_for_navigation(path, "user_path.gpx")
